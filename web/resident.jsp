@@ -4,6 +4,8 @@
     Author     : muhammadims.2013
 --%>
 
+<%@page import="water.entity.FeedResult"%>
+<%@page import="com.google.gson.Gson"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.IOException" %>
@@ -22,7 +24,9 @@
         dispatcher.forward(request, response);
     }
 
-    /*try {
+    Gson gson = new Gson();
+
+    try {
 
         URL url = new URL("http://localhost:8080/RESTfulExample/json/product/get");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -36,13 +40,16 @@
 
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 (conn.getInputStream())));
+        
+        FeedResult feedResult = gson.fromJson(br,FeedResult.class);
+        
 
-        String output;
+        /*String output;
         String jsonString = "";
         System.out.println("Output from Server .... \n");
         while ((output = br.readLine()) != null) {
             jsonString+=output;
-        }
+        }*/
 
         conn.disconnect();
 
@@ -54,7 +61,7 @@
 
         e.printStackTrace();
 
-    }*/
+    }
 
 %>
 <!DOCTYPE html>
