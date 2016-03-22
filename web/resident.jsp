@@ -4,6 +4,8 @@
     Author     : muhammadims.2013
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="water.entity.Feeds"%>
 <%@page import="water.entity.FeedResult"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,6 +27,7 @@
     }
 
     Gson gson = new Gson();
+    FeedResult feedResult = null;
 
     try {
 
@@ -41,7 +44,7 @@
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 (conn.getInputStream())));
         
-        FeedResult feedResult = gson.fromJson(br,FeedResult.class);
+        feedResult = gson.fromJson(br,FeedResult.class);
         
 
         /*String output;
@@ -64,6 +67,20 @@
         e.printStackTrace();
 
     }
+    
+    List<Feeds> feeds = null;
+    Boolean dispatchTruck = false;
+    
+    if(feedResult!=null) {
+        feeds = feedResult.getFeeds();
+        Feeds latestFeed = feeds.get(0);
+        if(latestFeed.getField1()<=10) {
+            dispatchTruck = true;
+            session.setAttribute("dispatchTruck",dispatchTruck);
+        }
+    }
+    
+    
 
 %>
 <!DOCTYPE html>
@@ -73,6 +90,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Water level status</h1>
+        <table>
+            <tr>
+                <th>Water Level</th>
+                <th>Time</th>
+            </tr>
+            <%
+            for(Feeds feed: feeds) {%>
+            <tr>
+                <td><%=feed.getField1()%></td>
+                <td><%=feed.getCreated_at()%></td>
+            </tr>
+            <%}%>
+        </table>
     </body>
 </html>
