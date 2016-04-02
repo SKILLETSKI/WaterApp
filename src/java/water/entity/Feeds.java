@@ -13,7 +13,7 @@ package water.entity;
 public class Feeds {
     private String created_at;
     private int entry_id;
-    private int field1;
+    private String field1;
 
     public String getCreated_at() {
         return created_at;
@@ -31,11 +31,11 @@ public class Feeds {
         this.entry_id = entry_id;
     }
 
-    public int getField1() {
+    public String getField1() {
         return field1;
     }
 
-    public void setField1(int field1) {
+    public void setField1(String field1) {
         this.field1 = field1;
     }
     
