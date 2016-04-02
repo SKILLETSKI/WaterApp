@@ -85,7 +85,7 @@
         }
     }
     
-    int waterLevel100 = (int)waterLevel * 100;
+    double waterLevel100 = waterLevel * 100;
 
 %>
 <!DOCTYPE html>

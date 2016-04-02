@@ -9,12 +9,10 @@
 String password = request.getParameter("password");
 if(username.equals("resident") && password.equals("resident")){
     session.setAttribute("user","resident");
-    RequestDispatcher dispatcher = request.getRequestDispatcher("resident.jsp");
-    dispatcher.forward(request,response);
+    response.sendRedirect("resident.jsp");
 } else if (username.equals("djb") && password.equals("djb")) {
     session.setAttribute("user","djb");
-    RequestDispatcher dispatcher = request.getRequestDispatcher("djb.jsp");
-    dispatcher.forward(request,response);
+    response.sendRedirect("djb.jsp");
 } else {
     request.setAttribute("error","Invalid username or password.");
     RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
