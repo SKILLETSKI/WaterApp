@@ -20,7 +20,7 @@
         request.setAttribute("error", "Unauthorized access");
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-    } else if (!session.getAttribute("user").equals("resident")) {
+    } else if (!session.getAttribute("user").equals("resident")||!session.getAttribute("user").equals("djb")) {
         request.setAttribute("error", "Unauthorized access");
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
