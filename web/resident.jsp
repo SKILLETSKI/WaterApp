@@ -20,7 +20,7 @@
         request.setAttribute("error", "Unauthorized access");
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-    } else if (!session.getAttribute("user").equals("resident")||!session.getAttribute("user").equals("djb")) {
+    } else if (!session.getAttribute("user").equals("resident")&&!session.getAttribute("user").equals("djb")) {
         request.setAttribute("error", "Unauthorized access");
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
@@ -140,7 +140,7 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Easy Water Supply</span></a>
+            <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>Easy Water Supply</span></a>
           </div>
           <div class="clearfix"></div>
 
@@ -181,6 +181,9 @@
                             <span class="chart" data-percent="<%=waterLevel100%>" style="left:80px">
                                 <span class="percent" style="left:83px"></span>
                             </span>
+                                <%if(dispatchTruck){%>
+                                <p style="text-align:center;">Water tanker has been alerted!</p>
+                                <%}%>
                           </div>          
                           <div class="clearfix"></div>
                         </div>
